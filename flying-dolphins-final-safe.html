@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flying Dolphins™ – Ultimate Safe Experience</title>
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+body {
+    font-family:"Arial", sans-serif;
+    color:#ffffff;
+    background:#0b1d2a;
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><polygon points="16,0 32,32 16,24 0,32" fill="white"/></svg>') 16 16, auto;
+}
+
+/* NAVBAR */
+nav {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px 0;
+    background:rgba(0,0,0,0.4);
+    font-weight:bold;
+    position:sticky;
+    top:0;
+    z-index:100;
+    flex-wrap:wrap;
+}
+nav a {color:#00f0ff; margin:5px 10px; text-decoration:none; transition:0.3s;}
+nav a:hover {color:#00ffff;}
+nav span {margin:0 10px; color:#00ffff;}
+
+/* HERO */
+.hero {
+    position:relative;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.wave-bg {
+    position:absolute;
+    width:200%;
+    height:100%;
+    background:linear-gradient(to top, #0b1d2a, #1e90ff);
+    transform:translateX(-25%);
+    animation:wave 30s linear infinite;
+    z-index:-3;
+}
+@keyframes wave {0% {transform:translateX(-25%);} 100% {transform:translateX(0);} }
+
+.hero-content {position:relative; z-index:1; max-width:900px; padding:0 20px;}
+.hero-content h1 {font-size:4rem; color:#00f0ff; margin-bottom:20px;}
+.hero-content p {font-size:1.4rem; color:#d0f0ff; opacity:0.9; line-height:1.6rem;}
+.hero-content .button {
+    margin-top:30px;
+    padding:15px 40px;
+    font-size:1rem;
+    border-radius:50px;
+    border:none;
+    background:#00f0ff;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    transition: all 0.3s;
+}
+.hero-content .button:hover {background:#00bfff; transform:translateY(-3px);}
+
+/* MUSIC BUTTON */
+#playButton {
+    position:fixed;
+    top:10px;
+    left:10px;
+    z-index:200;
+    padding:10px 20px;
+    border:none;
+    border-radius:12px;
+    background:#00f0ff;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+#playButton:hover {background:#00bfff; transform:translateY(-2px);}
+
+/* DOLPHINS */
+.dolphin {position:absolute;font-size:3rem;animation:float linear infinite;opacity:0.85;}
+@keyframes float {0%{transform:translateY(0) translateX(0) rotate(0deg);}50%{transform:translateY(-40px) translateX(30px) rotate(15deg);}100%{transform:translateY(0) translateX(0) rotate(0deg);}}
+
+/* SECTIONS & CARDS */
+.section {padding:80px 20px;max-width:1000px;margin:auto;}
+.section h2 {font-size:2.5rem;color:#00f0ff;margin-bottom:30px;text-align:center;}
+.cards {display:flex;flex-wrap:wrap;gap:25px;justify-content:center;}
+.card {
+    background: rgba(19,44,61,0.95);
+    padding:25px;
+    border-radius:25px;
+    flex:1 1 300px;
+    min-width:300px;
+    max-width:400px;
+    transition:all 0.6s;
+    opacity:0;
+    transform:translateY(50px);
+}
+.card p {font-size:1rem; line-height:1.6rem; text-align:justify; color:#d0f0ff;}
+
+/* CONTACT FORM */
+.contact-form input,
+.contact-form textarea {
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border-radius:12px;
+    border:none;
+    font-size:1rem;
+    background:#0f2a44;
+    color:#fff;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {color:#a0dff0;}
+.contact-form button {
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:none;
+    background:#00f0ff;
+    color:#000;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+.contact-form button:hover {background:#00bfff; transform:translateY(-3px);}
+
+/* VIDEO */
+.video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,255,255,0.3);
+    margin:20px auto;
+    max-width:800px;
+}
+.video-container iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+/* FOOTER */
+footer {padding:40px 20px;text-align:center;background:rgba(0,0,0,0.4);font-size:0.9rem;color:#ccc;}
+
+/* ANIMATIONS SPECIFIC */
+.card.slide-left {transform:translateX(-50px); opacity:0;}
+.card.slide-right {transform:translateX(50px); opacity:0;}
+.card.zoom-rotate {transform:scale(0.5) rotate(-10deg); opacity:0;}
+.card.flip {transform:rotateY(90deg); opacity:0;}
+.card.bounce {transform:translateY(100px); opacity:0;}
+
+/* MEDIA QUERIES – RESPONSIVE */
+@media (max-width:768px){
+  .cards {flex-direction:column; gap:15px;}
+  .hero-content h1 {font-size:2.5rem;}
+  .hero-content p {font-size:1.1rem;}
+  .contact-form input, .contact-form textarea {font-size:0.9rem;}
+  nav {flex-direction:column; text-align:center;}
+  nav span {display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC BUTTON -->
+<button id="playButton">נגן צלילי ים</button>
+<audio id="oceanAudio" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    הדפדפן שלך אינו תומך אודיו
+</audio>
+
+<!-- BACKGROUND -->
+<div class="wave-bg"></div>
+
+<!-- NAVBAR -->
+<nav>
+    <a href="#probability">מחקר</a><span>|</span>
+    <a href="#internet">אינטרנט</a><span>|</span>
+    <a href="#books">ספרות</a><span>|</span>
+    <a href="#video">סרטון הדרכה</a><span>|</span>
+    <a href="#contact">צור קשר</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>העתיד של התעופה הימית</h1>
+<p>דולפינים מעופפים – שילוב של מדע, דמיון וסטארטאפ פורץ דרך. האתר מציג מידע מדעי, תיאורים מהאינטרנט וספרות, תוך חווית משתמש מרהיבה עם אנימציות, פרלקס ותנועה טבעית של דולפינים. כל פסקה מנוסחת בצורה מקצועית כדי לתת אמינות ותוכן עשיר למבקר.</p>
+<button class="button">גלה עוד</button>
+</div>
+
+<div class="dolphin" style="top:10%; left:5%;">🐬</div>
+<div class="dolphin" style="top:20%; left:70%; animation-duration:6s;">🐬</div>
+<div class="dolphin" style="top:60%; left:30%; animation-duration:4s;">🐬</div>
+<div class="dolphin" style="top:80%; left:80%; animation-duration:5s;">🐬</div>
+</section>
+
+<!-- SECTIONS -->
+<section class="section" id="probability">
+<h2>הסבירות שזה קיים</h2>
+<div class="cards">
+<div class="card slide-left"><p>דולפינים הם יונקי ים עם יכולת קפיצה מרשימה שמאפשרת להם להתרומם כמה מטרים מעל פני המים. עם זאת, הם אינם מסוגלים לעוף באמת. מבנה גופם ההידרודינמי, השרירים החזקים וזנבם המיוחד מאפשרים קפיצות מרשימות אך רק בתנועה בליסטית. המדע מראה כי אין להם איברים שמאפשרים תעופה. למרות זאת, הדימוי של “דולפינים מעופפים” מרתק את הדמיון, במיוחד במדיה, ממים וסרטונים.</p></div>
+<div class="card slide-left"><p>הסיכוי לראות דולפין מעופף באמת, כפי שמוצג בדימויים פנטסטיים, נמוך מאוד. רוב הדיווחים מתבססים על וידאו ותמונות של קפיצות גבוהות היוצרות אשליה של מעוף. עם זאת, המושג הזה הפך לאייקוני בתרבות הפופולרית, עם השראה לסיפורים, אנימציות ותכנים ויזואליים שמעוררים התפעלות בקרב הקהל.</p></div>
+</div>
+</section>
+
+<section class="section" id="internet">
+<h2>אזכורים באינטרנט</h2>
+<div class="cards">
+<div class="card slide-right"><p>באינטרנט קיימים סרטונים, ממים ודיונים בפורומים שונים שמתארים דולפינים “מעופפים”. רוב התוכן הוא הומוריסטי או פנטסטי אך מבוסס על המציאות – קפיצות גבוהות של הדולפינים. אתרים ופורומים משתמשים בקונספט ליצירת חוויות אינטראקטיביות, סיפורי וידאו ודימויים ויזואליים מרהיבים.</p></div>
+<div class="card slide-right"><p>דוגמאות: Reddit עם ממים על דולפינים, ואתרי מדע המסבירים את הקפיצות והיכולות המדהימות שלהם. המידע כולל מהירות שחייה, יכולת דילוג מעל המים ותנועות שמעניקות מראה כאילו הם “עפים”.</p></div>
+</div>
+</section>
+
+<section class="section" id="books">
+<h2>אזכורים בספרות</h2>
+<div class="cards">
+<div class="card zoom-rotate"><p>בספרות פנטזיה ומדע בדיוני, דולפינים מופיעים כחכמים עם יכולות מיוחדות, מסמלים חוכמה, חופש ושובבות. ספרי ילדים ומיתוסים עכשוויים מציגים אותם כחלק מהעולם הדמיוני, לעיתים עם יכולת תעופה, מה שמחזק את הפנטזיה סביב דולפינים מעופפים ומעשיר את הדימוי התרבותי.</p></div>
+<div class="card zoom-rotate"><p>ספרים כמו “The Hitchhiker’s Guide to the Galaxy” מציגים דולפינים כחכמים במיוחד, וספרות ילדים מגוונת משתמשת בדולפינים ליצירת סיפורים קסומים. הדימוי מחבר בין מדע, דמיון ויצירתיות, מה שהופך את נושא הדולפינים המעופפים למושך במיוחד.</p></div>
+</div>
+</section>
+
+<section class="section" id="video">
+<h2>סרטון הדרכה</h2>
+<button id="loadVideo" class="button">הפעל סרטון</button>
+<div class="video-container" id="videoContainer"></div>
+</section>
+
+<section class="section" id="contact">
+<h2>צור קשר</h2>
+<p>השאר פרטים ונחזור אליך בנוגע לכל שאלה, רעיון או הזמנה פוטנציאלית. הטופס מאפשר חוויה אינטראקטיבית מקצועית תוך שמירה על פרטיותך ובטיחות המידע. אנו נשוב אליך בהקדם עם תשובות מפורטות ומקצועיות, כדי שתוכל לחוות את עולם הדולפינים המעופפים בצורה אמינה ומהנה.</p>
+<form class="contact-form" onsubmit="alert('ניצור קשר בהקדם!'); return false;">
+<input type="text" placeholder="שם מלא" required>
+<input type="email" placeholder="אימייל" required>
+<textarea placeholder="הודעה" rows="5" required></textarea>
+<button type="submit">שלח</button>
+</form>
+</section>
+
+<footer>
+© 2026 Flying Dolphins™ – All Rights Reserved
+</footer>
+
+<script>
+// אנימציות מיוחדות לכל קטגוריה
+const cardObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            if(entry.target.classList.contains('slide-left')) entry.target.style.transform='translateX(0)'; 
+            if(entry.target.classList.contains('slide-right')) entry.target.style.transform='translateX(0)'; 
+            if(entry.target.classList.contains('zoom-rotate')) entry.target.style.transform='scale(1) rotate(0deg)'; 
+            if(entry.target.classList.contains('flip')) entry.target.style.transform='rotateY(0deg)'; 
+            if(entry.target.classList.contains('bounce')) entry.target.style.transform='translateY(0)'; 
+            entry.target.style.opacity=1;
+        }
+    });
+}, {threshold:0.2});
+document.querySelectorAll('.card').forEach(c=>cardObserver.observe(c));
+
+// Music Play Button
+const audio = document.getElementById('oceanAudio');
+const btn = document.getElementById('playButton');
+btn.addEventListener('click', () => {
+    if(audio.paused){ audio.play(); btn.textContent='עצור צלילי ים'; }
+    else{ audio.pause(); btn.textContent='נגן צלילי ים'; }
+});
+
+// Load YouTube on demand
+document.getElementById('loadVideo').addEventListener('click', function(){
+    const container = document.getElementById('videoContainer');
+    if(container.innerHTML===''){
+        container.innerHTML = '<iframe src="https://www.youtube.com/embed/tZmXIm29IMs?rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>';
+        this.style.display='none'; // מסתיר את הכפתור אחרי הטעינה
+    }
+});
+</script>
+
+</body>
+</html>
